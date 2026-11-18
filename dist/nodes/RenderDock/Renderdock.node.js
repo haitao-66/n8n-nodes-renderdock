@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RenderDock = void 0;
+exports.Renderdock = void 0;
 const n8n_workflow_1 = require("n8n-workflow");
-class RenderDock {
+class Renderdock {
     constructor() {
         this.description = {
             displayName: 'RenderDock',
@@ -160,7 +160,8 @@ class RenderDock {
                 if (resource === 'template') {
                     body.template = this.getNodeParameter('template', itemIndex);
                     const additionalFields = this.getNodeParameter('additionalFields', itemIndex);
-                    body.data = (_a = additionalFields.data) !== null && _a !== void 0 ? _a : {};
+                    const templateData = (_a = additionalFields.data) !== null && _a !== void 0 ? _a : {};
+                    body.data = typeof templateData === 'string' ? JSON.parse(templateData) : templateData;
                 }
                 if (filename) {
                     body.filename = filename;
@@ -199,5 +200,5 @@ class RenderDock {
         return [returnData];
     }
 }
-exports.RenderDock = RenderDock;
+exports.Renderdock = Renderdock;
 //# sourceMappingURL=Renderdock.node.js.map

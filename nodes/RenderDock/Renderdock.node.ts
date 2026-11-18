@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 
-export class RenderDock implements INodeType {
+export class Renderdock implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'RenderDock',
 		name: 'renderdock',
@@ -167,9 +167,10 @@ export class RenderDock implements INodeType {
 				if (resource === 'template') {
 					body.template = this.getNodeParameter('template', itemIndex);
 					const additionalFields = this.getNodeParameter('additionalFields', itemIndex) as {
-						data?: object;
+						data?: object | string;
 					};
-					body.data = additionalFields.data ?? {};
+					const templateData = additionalFields.data ?? {};
+					body.data = typeof templateData === 'string' ? JSON.parse(templateData) : templateData;
 				}
 				if (filename) {
 					body.filename = filename;

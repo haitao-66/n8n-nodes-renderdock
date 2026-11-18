@@ -1,7 +1,7 @@
 {
     "name": "n8n-nodes-renderdock",
-    "version": "0.1.3",
-    "description": "RenderDock node for n8n — turn Markdown, HTML, public URLs, and Handlebars templates into polished PDF and PNG files",
+    "version": "0.1.5",
+    "description": "RenderDock node for n8n 鈥?turn Markdown, HTML, public URLs, and Handlebars templates into polished PDF and PNG files",
     "license": "MIT",
     "homepage": "https://renderdock.dev",
     "keywords": [
@@ -18,7 +18,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/haitao-66/renderdock.git"
+        "url": "https://github.com/haitao-66/n8n-nodes-renderdock.git"
     },
     "scripts": {
         "build": "n8n-node build",
