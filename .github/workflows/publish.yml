@@ -1,0 +1,43 @@
+# Publishes this n8n community node package to npm on every version tag push.
+# Starting May 1 2026, n8n requires all community nodes to be published via
+# GitHub Actions with npm provenance statements.
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: 'pnpm install --ignore-scripts'
+
+      - name: Release
+        run: |
+          [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          pnpm run release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
