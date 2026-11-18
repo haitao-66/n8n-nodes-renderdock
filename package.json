@@ -1,4 +1,4 @@
-﻿{
+{
     "name":  "n8n-nodes-renderdock",
     "version":  "0.1.4",
     "description":  "RenderDock node for n8n 鈥?turn Markdown, HTML, public URLs, and Handlebars templates into polished PDF and PNG files",
